@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<script type="text/javascript">
+		<!--
+			function lade(link)
+			{
+				/* je nach Wert der Variable link, wird eine bestimmte html-Seite 
+				in der Stylesheet-Klasse .content geladen */ 
+				if(link === "sp")
+				{
+					$(document).ready(function()
+					{
+						$(".content").load("person_speichern.html");
+					});
+				}
+				if(link === "sup")
+				{
+					$(document).ready(function()
+					{
+						$(".content").load("person_suchen.html",function()
+						{
+							/* Wenn Knopf mit id "suche"  in person_suchen.html gedrueckt wird, dann wird die Datei
+							personen_suchen.php in .content geladen und die Daten aus dem Formular
+							mit id "such_formular" werden an person_suchen.php uebergeben*/
+							$("#suche").click(function()
+							{
+								$(document).find($(".content")).load("person_suchen.php",$("#such_formular").serializeArray());						
+							});
+						});
+					});
+				}
+				if(link === "sa")
+				{
+					$(document).ready(function()
+					{
+						$(".content").load("artikel_speichern.html");
+					});
+				}
+				if(link === "sua")
+				{
+					$(document).ready(function()
+					{
+						/* Wenn Knopf mit id "suche"  in artikel_suchen.html gedrueckt wird, dann wird die Datei
+						artikel_suchen.php in .content geladen und die Daten aus dem Formular
+						mit id "suchen_formular" werden an artikel_suchen.php uebergeben*/
+						$(".content").load("artikel_suchen.html",function()
+						{
+							$("#suche").click(function()
+							{
+								$(document).find($(".content")).load("artikel_suchen.php",$("#suchen_formular").serializeArray());						
+							});					
+						});
+					});
+				}
+				if(link === "sb")
+				{
+					$(document).ready(function()
+					{
+						$(".content").load("bestellung_speichern.html");
+					});
+				}
+				if(link === "bp")
+				{
+					$(document).ready(function()
+					{
+						/* Wenn Knopf mit id "suche"  in bestellungen_pro_person.html gedrueckt wird, dann wird die Datei
+						bestellungen_pro_person.php in .content geladen und die Daten aus dem Formular
+						mit id "such_formular" werden an bestellungen_pro_person.php uebergeben*/
+						$(".content").load("bestellungen_pro_person.html",function(){
+							$("#suche").click(function()
+							{
+								$(document).find($(".content")).load("bestellungen_pro_person.php",$("#such_formular").serializeArray());					
+							});						
+						});
+					});
+				}
+				if(link === "ba")
+				{
+					$(document).ready(function()
+					{
+						$(".content").load("bestellungen_pro_artikel.html",function()
+						{
+							/* Wenn Knopf mit id "suche"  in bestellungen_pro_person.html gedrueckt wird, dann wird die Datei
+							bestellungen_pro_artikel.php in .content geladen und die Daten aus dem Formular
+							mit id "such_formular" werden an bestellungen_pro_artikel.php uebergeben*/
+							$("#suche").click(function()
+							{
+								$(document).find($(".content")).load("bestellungen_pro_artikel.php",$("#such_formular").serializeArray());				
+							});												
+						});
+					});
+				}
+			}
+
+			function db_anlegen()
+			{
+				//die Datei db_anlegen.php, in welcher die Datenbank Bestellungen angelegt wird, wird geladen
+				$.get("db_anlegen.php");
+				return false;
+			}
+		-->
+		</script>
+		
+		
+		<title>Bestellungen</title>
+		<meta charset="utf-8" />
+		<style type="text/css" />
+			/* in dem stylesheet body werden Schriftart und Schriftgroesse festegelegt */
+			body
+			{
+				font-family: Verdana,Arial,Helvetica,sans-serif;
+				font-size: 12px;
+			}
+			
+			/* .contentHolder legt die Breite der Seite fest */
+			.contentHolder
+			{
+				width: 960px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			
+			/* .header ist die Klasse fuer die Kopfzeile */
+			.header
+			{
+				height: 80px;
+				text-align: center;
+				font-size: 1.5em;
+			}
+			/* .sidebar ist die Klasse fuer die Seitenleiste; sie befindet sich links */
+			.sidebar
+			{
+				width: 250px;
+				min-height: 500px;
+				height: auto;
+				margin-right:10px;
+				padding-left: 5px;
+				float: left;
+				font-size: 1.5em;
+			}
+			
+			/* .sidebar ul wird fuer eine Liste von Links in .sidebar benoetigt */
+			.sidebar ul
+			{
+				margin: 0;
+				padding: 0;
+				list-style-type: none;
+			}
+			
+			/* .content beinhaltet spaeter die Seiten, welche angezeigt werden sollen */
+			.content
+			{
+				min-height: 500px;
+				height: auto;
+				padding-right: 10px;
+			}
+			
+			/* .clear wird benoetigt damit die Fusszeile weder von links noch von rechts von Elementen verdeckt wird */
+			.clear
+			{
+				clear:both;
+			}
+			
+		</style>
+	</head>
+	<!-- Wenn der Koerper geladen wird, dann wird die Funktion db_anlegen ausgefuehrt -->
+	<body onload="db_anlegen();">
+		<div class="contentHolder">
+			<div class="header">
+				Bestellungen
+			</div>
+			<div class="sidebar">
+				<ul>
+					<!-- eine Liste fuer verschiedene Links -->
+					<li><a href="#" onclick="lade('sp');">Person speichern</a></li>
+					<li><a href="#" onclick="lade('sup');">Person suchen</a></li>
+					<li><a href="#" onclick="lade('sa');">Artikel speichern</a></li>
+					<li><a href="#" onclick="lade('sua');">Artikel suchen</a></li>
+					<li><a href="#" onclick="lade('sb');">Bestellung speichern</a></li>
+					<li><a href="#" onclick="lade('bp');">Bestellungen pro Person</a></li>
+					<li><a href="#" onclick="lade('ba');">Bestellungen pro Artikel</a></li>
+			</div>
+			<div class="content">
+			</div>
+			<div class="clear">&nbsp;</div>
+			<div class="footer">
+			<!-- Fusszeile -->
+				&copy Christian Theisen
+			</div>			
+		</div>
+	</body>
+</html>

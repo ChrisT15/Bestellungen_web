@@ -1,0 +1,2 @@
+Dieses Programm kann Kundendaten, Artikeldaten und Bestellungen speichern. Zudem koennen Kunden, Artikel sowie alle Bestellungen, die ein Kunde durchgefuehrt hat, und
+alle Bestellungen, in denen ein Artikel bestellt wurde, gesucht werden. Das Programm wird durch Oeffnen von main.html gestartet.
